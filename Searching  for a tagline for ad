@@ -1,0 +1,36 @@
+-- the restaurant business has been booming and it is now looking to place a catchy advertisement in the local subway station.
+--Help them dig into their orders table to see if there is anything interesting in there for a funny tagline!
+ 
+ SELECT * FROM orders LIMIT 10;
+ 
+ d	    user_id	    order_date	    restaurant_id	    item_name	      special_instructions
+ 1	      43	      2017-05-10	        6	          Beef Enchilada	        ketchup
+ 2       	9	        2017-06-30	        3	             Samosa	
+ 3	      37      	2017-06-15        	1	             Chicken Fajitas	    Pickles on the side.
+ 4	      31	      2017-06-13	        5	             Picadillo	          SRIRACHA SAUCE
+ 4	      31	      2017-06-13	        5	             Taquitos	
+ 5	      22	      2017-06-16	        6	             Beef Enchilada	       no red onions.
+ 5	      22	      2017-06-16	        6	             Beef Enchilada	
+ 5	      22	      2017-06-16	        6	             Flautas	
+ 5	      22	      2017-06-16	        6           	 Salsa	
+ 6     	  27	      2017-06-09	        13	           Cannelloni	
+ 
+ --How recent are the orders
+ SELECT DISTINCT order_date FROM orders ORDER BY order_date DESC;
+ 
+ --The special_instructions column stores the data where Davie’s Burgers customers leave a note for the kitchen or the delivery.
+--Instead of selecting all the columns using *, write a query that selects only the special_instructions column.
+--Limit the result to 20 rows.
+SELECT special_instructions FROM orders LIMIT 20;
+
+--There seem to be a lot of empty values in that column. That is because customers sometimes leave the notes section blank.
+--Can you edit the query so that we are only returning the special instructions that are not empty?
+SELECT special_instructions FROM orders WHERE special_instructions IS NOT NULL LIMIT 20;
+
+--Let’s search for special instructions that have the word ‘sauce’.
+SELECT special_instructions FROM orders WHERE special_instructions LIKE '%sauce%';
+SELECT id AS '#',special_instructions AS 'Notes' FROM orders WHERE special_instructions LIKE '%box%';
+--so on...
+
+--You have found special instructions that are funny and ridiculous - the perfect combo for a Davie’s Burgers tagline.
+--The marketing agency took it from there and worked out a subway ad in no time!
